@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Authorization.css";
 import axios from "axios";
 
-function Signup() {
+function Signup({toggleBox}) {
   // const [signUpData, setSignUpData] = usestate({
   //   name:'',
   //   email:'',
@@ -89,6 +89,7 @@ function Signup() {
       <button className="btn btn-primary mt-3" onClick={doSignUp}>
         Signup
       </button>
+      <p>Already registered user...? <i onClick={()=>toggleBox('login')}>Login here</i> </p>
     </div>
   );
 }
