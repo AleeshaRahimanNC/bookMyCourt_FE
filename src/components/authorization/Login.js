@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import './Authorization.css'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setUser } from '../../toolkit/userSlice'
 
 function Login({toggleBox}) {
 
@@ -11,6 +13,7 @@ function Login({toggleBox}) {
 //        password:''
 //   }
 const navigate=useNavigate()
+const dispatch=useDispatch() 
 const handleChange = (e) =>
 {
 setLogCre({...logCre, [e.target.name]:e.target.value})
@@ -24,6 +27,7 @@ const doLogin = () =>{
       // navigate to home page
       alert(res.data.message);
       localStorage.setItem('token',res.data.token)
+      dispatch(setUser(res.data.userDetails))
       navigate('/home')
     }
  })

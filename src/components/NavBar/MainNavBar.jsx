@@ -17,6 +17,8 @@ import {
 } from 'mdb-react-ui-kit';
 //import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 
 export default function MainNavBar() {
   const [openBasic, setOpenBasic] = useState(false);
@@ -27,6 +29,8 @@ export default function MainNavBar() {
     localStorage.clear()
     navigate('/')
   }
+
+const {user} = useSelector((store)=>store.user)
 
   return (
     <MDBNavbar expand='lg' dark bgColor='primary'>
@@ -84,7 +88,7 @@ export default function MainNavBar() {
         <div className='d-none d-lg-block'> {/*Display on large screen only*/}
                <MDBDropdown>
                 <MDBDropdownToggle tag='a' className='nav-link ms-2' role='button'>
-     name name            
+     {user.name}           
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
                   <MDBDropdownItem link>Action</MDBDropdownItem>
