@@ -9,27 +9,43 @@ function AddNewCourtBox() {
     mobileNumber: "",
     description: "",
   });
+  //console.log("court",courtData.courtName)
   const [selectedImage, setSelectedImage] = useState("");
   const [courtPic, setCourtPic] = useState("");
   const handleChange = (e) => {
     setCourtData({ ...courtData, [e.target.name]: e.target.value });
   };
   const imageChange = (e) => {
-    
     setCourtPic(e.target.files[0]);
-    e.target.files[0]? setSelectedImage(URL.createObjectURL(e.target.files[0])):setSelectedImage(null)
+    e.target.files[0]
+      ? setSelectedImage(URL.createObjectURL(e.target.files[0]))
+      : setSelectedImage(null);
   };
-  const createCourt =()=>{
-let fileData=new FormData()
-fileData.append('image',courtPic)
-axios.post(`${process.env.REACT_APP_BE_URL}/admin/createCount`,fileData,{params:courtData},{headers:{"content-type":'multipart/form-data'}}).then((res)=>{
-  
-})
-.catch((err)=>{
-  console.log(err)
-  debugger
-})
-  }
+  const createCourt = () => {
+    let fileData = new FormData();
+    fileData.append('image', courtPic);
+  //  fileData.append('courtName', courtData.courtName);
+  //  fileData.append('location', courtData.location);
+  //  fileData.append('address',courtData.address);
+  //  fileData.append('mobileNumber', courtData.mobileNumber);
+  //  fileData.append('description', courtData.description);
+    axios
+      .post(
+        `${process.env.REACT_APP_BE_URL}/admin/createCourt`,
+        fileData,
+        {params: courtData},
+        {headers: { "Content-type": "multipart/form-data" } }
+        
+      )
+      .then((res) => {
+        console.log("hh",res)
+//handle success
+      })
+      .catch((err) => {
+        console.log("s",err);
+        //debugger;
+      });
+  };
   return (
     <>
       <div className="p-2 border border-1 rounded-1 d-flex flex-column">
@@ -86,7 +102,9 @@ axios.post(`${process.env.REACT_APP_BE_URL}/admin/createCount`,fileData,{params:
           <label htmlFor="">Court Image</label>
           <input type="file" onChange={imageChange} />
         </span>
-        {selectedImage && <img src={selectedImage} alt="" width={100} height={100} />}
+        { selectedImage && 
+          <img src={selectedImage} alt="" width={100} height={100} />
+        }
       </div>
       <button onClick={createCourt}>Create</button>
     </>
