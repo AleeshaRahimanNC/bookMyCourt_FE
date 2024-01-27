@@ -9,6 +9,7 @@ import { TIMINGS } from "../../constants";
 function CourtDetails() {
     const { id } = useParams(); //get the id present in the router
     const [open, setOpen] = useState(false);
+    const [slotdata,setSlotData] = useState({})
     useEffect(() => {
         getCourtDatabyId();
     }, []);
@@ -38,12 +39,21 @@ function CourtDetails() {
             (element) => element.id !== parseInt(e.target.value)
         );
         setFilteredSlots(filterData);
-        console.log(slot);
+        
         setSelected([...selected, slot]);
     };
 
+const handleSlotData = (e) =>{
+setSlotData({...slotdata,[e.target.name]:e.target.value})
+}
+
 const createslotsdata=()=>{
-    debugger
+    axiosInstance.post('/admin/addtimeslotsData', {...slotdata,slots:selected,courtId:id})
+    .then((res) =>{
+        setOpen(false)
+        alert(res.data)
+    })
+    .catch((err) =>{console.log(err);})
 }
 
     return (
@@ -73,15 +83,15 @@ const createslotsdata=()=>{
                             <h2>{court.location}</h2>
                             <span>
                                 <label htmlFor="">Starting Date</label>
-                                <input type="date" />
+                                <input type="date" name="startDate" value={slotdata.startDate} onChange={handleSlotData}/>
                             </span>
                             <span>
                                 <label htmlFor="">Ending Date</label>
-                                <input type="date" />
+                                <input type="date" name="endDate" value={slotdata.endDate} onChange={handleSlotData}/>
                             </span>
                             <span>
                                 <label htmlFor="">Cost</label>
-                                <input type="number" />
+                                <input type="number" name="cost" value={slotdata.cost} onChange={handleSlotData}/>
                             </span>
                             <span>
                                 <label htmlFor="">Select Slots</label>
@@ -107,5 +117,7 @@ const createslotsdata=()=>{
         </>
     );
 }
+
+
 
 export default CourtDetails;
