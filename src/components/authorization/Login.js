@@ -43,26 +43,33 @@ const doLogin = () =>{
 }
 
   return (
-    <div className="signup-box d-flex flex-column p-3">
+    <div className="signup-box d-flex flex-column">
     <h3 className="text-center">LogIn</h3>
 
+    <div className='input-box'>
+    <input type="email" name="email" value={logCre.email} onChange={handleChange} placeholder="Email"/>
+    <i class="fa-solid fa-envelope" style={{color:"#FFD43B"}}></i>
+    </div>
     
-    <label htmlFor=""> Email </label>
-    <input type="email" name="email" value={logCre.email} onChange={handleChange} />
-    
-    <label htmlFor=""> Password </label>
+    <div className='input-box'>
     <input
       type="password"
       name="password"
       value={logCre.password}
       onChange={handleChange}
+      placeholder="Password"
     />
+    <i class="fa-solid fa-lock" style={{color:"#FFD43B"}}></i>
+    </div>
     
-
-    <button className="btn btn-primary mt-3" onClick={doLogin}>
+    <button className="btn mt-3" onClick={doLogin}>
       Signup
     </button>
+
+    <div className='register_link'>
     <p>Not a registered user...? <i onClick={()=>toggleBox('signup')}>Signup here</i></p> 
+    </div>
+
   </div>
   )
 }

@@ -57,39 +57,55 @@ function Signup({toggleBox}) {
   };
 
   return (
-    <div className="signup-box d-flex flex-column p-3">
+    <div className="signup-box d-flex flex-column">
       <h3 className="text-center">SignUp</h3>
 
-      <label htmlFor=""> Name </label>
-      <input type="text" name="name" value={name} onChange={handleName} />
-      <label htmlFor=""> Email </label>
-      <input type="email" name="email" value={email} onChange={handleEmail} />
-      <label htmlFor=""> Mobile Number </label>
+      <div className='input-box'>
+      <input type="text" name="name" value={name} onChange={handleName} placeholder="Name"/>
+    
+      </div>
+
+      <div className='input-box'>
+      <input type="email" name="email" value={email} onChange={handleEmail} placeholder="Email"/>
+      </div>
+
+      <div className='input-box'>
       <input
         type="Number"
         name="number"
         value={number}
         onChange={handleNumber}
+        placeholder="Mobile Number"
       />
-      <label htmlFor=""> Password </label>
+      </div>
+
+      <div className='input-box'> 
       <input
         type="password"
         name="password"
         value={password}
         onChange={handlePassword}
+        placeholder="Password"
       />
-      <label htmlFor=""> Confirm Password </label>
+      </div>
+
+      <div className='input-box'>
       <input
         type="password"
         name="confirmPassword"
         value={confirmPassword}
         onChange={handleConfirmPassword}
+        placeholder="Confirm Password"
       />
+      </div>
 
-      <button className="btn btn-primary mt-3" onClick={doSignUp}>
+      <button className="btn mt-3" onClick={doSignUp}>
         Signup
       </button>
+      
+      <div className='register_link'>
       <p>Already registered user...? <i onClick={()=>toggleBox('login')}>Login here</i> </p>
+      </div>
     </div>
   );
 }
