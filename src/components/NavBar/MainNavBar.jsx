@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import './MainNavBar.css'
+
 import {
   MDBContainer,
   MDBNavbar,
@@ -8,7 +11,6 @@ import {
   MDBNavbarNav,
   MDBNavbarItem,
   MDBNavbarLink,
-  MDBBtn,
   MDBDropdown,
   MDBDropdownToggle,
   MDBDropdownMenu,
@@ -33,9 +35,9 @@ export default function MainNavBar() {
 const {user} = useSelector((store)=>store.user)
 
   return (
-    <MDBNavbar expand='lg' dark bgColor='primary'>
+    <MDBNavbar className='navbar navbar-expand-lg shadow py-3 sticky-top'>
       <MDBContainer fluid>
-        <MDBNavbarBrand href='#'>Brand</MDBNavbarBrand>
+      <MDBNavbarBrand className='navbar-brand'><em>BookMyCourt</em></MDBNavbarBrand> 
 
         <MDBNavbarToggler
           aria-controls='navbarSupportedContent'
@@ -43,32 +45,32 @@ const {user} = useSelector((store)=>store.user)
           aria-label='Toggle navigation'
           onClick={() => setOpenBasic(!openBasic)}
         >
-          <MDBIcon icon='bars' fas />
+          <MDBIcon className='toggle-icon' icon='bars' fas />
         </MDBNavbarToggler>
 
         <MDBCollapse navbar open={openBasic}>
-          <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
-            <MDBNavbarItem>
-              <MDBNavbarLink active aria-current='page' href='/home'>
+          <MDBNavbarNav className='mr-auto mb-2 mb-lg-0 navbar-pack1'>
+            <MDBNavbarItem className='navbar-pack'>
+              <MDBNavbarLink className='navbar-pack2' active aria-current='page' href='/home'>
                 Home
               </MDBNavbarLink>
             </MDBNavbarItem>
 
-            <MDBNavbarItem>
-              <MDBNavbarLink active aria-current='page' href='/addNewCourt'>
+            <MDBNavbarItem className='navbar-pack'>
+              <MDBNavbarLink className='navbar-pack2' active aria-current='page' href='/addNewCourt'>
                 AddNewCourt
               </MDBNavbarLink>
             </MDBNavbarItem>
             
-            <MDBNavbarItem>
-              <MDBNavbarLink active aria-current='page' href='/mybookings'>
+            <MDBNavbarItem className='navbar-pack'>
+              <MDBNavbarLink className='navbar-pack2' active aria-current='page' href='/mybookings'>
                 My Bookings
               </MDBNavbarLink>
             </MDBNavbarItem>
 
-            <MDBNavbarItem>
+            <MDBNavbarItem className='navbar-pack'>
               <MDBDropdown>
-                <MDBDropdownToggle tag='a' className='nav-link' role='button'>
+                <MDBDropdownToggle tag='a' className='nav-link navbar-pack2' role='button'>
                   Dropdown
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
@@ -80,11 +82,10 @@ const {user} = useSelector((store)=>store.user)
             </MDBNavbarItem>
         </MDBNavbarNav>
 
-          <form className='d-flex input-group w-auto'>
+          <form className='d-flex input-group w-auto input-query'>
             <input type='search' className='form-control' placeholder='Type query' aria-label='Search' />
-            <MDBBtn color='primary'>Search</MDBBtn>
           </form>
-
+          <Button className='navbar__button-style mt-4' variant="warning">search</Button>
         <div className='d-none d-lg-block'> {/*Display on large screen only*/}
                <MDBDropdown>
                 <MDBDropdownToggle tag='a' className='nav-link ms-2' role='button'>

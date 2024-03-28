@@ -1,0 +1,14 @@
+.court-container {
+  margin: 30px;
+  padding: 20px;
+  text-transform: capitalize;
+}
+
+.court-container:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transform: scale(1.1);
+}
+
+.court-img {
+  height: 200px;
+}

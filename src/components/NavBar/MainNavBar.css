@@ -1,0 +1,35 @@
+.navbar-brand{
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 26px;
+    color: var(--brand-yellow);
+}
+
+.navbar{
+    background-color: var(--brand-black);
+    color: white;
+}
+
+.navbar .navbar-pack .navbar-pack2{
+    color: var(--brand-teal);
+}
+
+.navbar__button-style{
+    background-color: var(--brand-yellow);
+    color: black; 
+    margin: 20px;
+    border: none;
+}
+
+.form-control{
+    background: transparent; 
+}
+
+.navbar .input-query .form-control::placeholder{
+    color: var(--brand-teal);
+}
+
+.toggle-icon{
+    color: var(--brand-yellow);
+    
+}

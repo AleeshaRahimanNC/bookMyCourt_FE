@@ -3,6 +3,7 @@ import "./LoginPage.css";
 import Signup from "../../components/authorization/Signup";
 import Login from "../../components/authorization/Login";
 
+
 function LoginPage() {
   const [boxtype,setBoxType]=useState('signup')
   return (

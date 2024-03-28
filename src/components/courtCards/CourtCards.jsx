@@ -1,11 +1,11 @@
 import React from "react";
+import './CourtCards.css'
 import {
   MDBCard,
   MDBCardBody,
   MDBCardTitle,
   MDBCardText,
   MDBCardImage,
-  MDBBtn,
 } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
 
@@ -19,10 +19,10 @@ export default function CourtCards({ court }) {
   return (
     <MDBCard
       style={{ width: "18rem" }}
-      className="col-12 col-md-3 col-lg-4 col-xl-2 col-xxl-1"
+      className="col-12 col-md-3 col-lg-4 col-xl-2 col-xxl-1 court-container shadow"
       onClick={openCourtDetails}
     >
-      <MDBCardImage
+      <MDBCardImage className="court-img"
         src={`${process.env.REACT_APP_BE_URL}/images/${court.courtPic}`}
         position="top"
         alt="..."

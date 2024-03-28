@@ -37,7 +37,6 @@ h3{
 
 .input-box input::placeholder{
    color:var(--brand-teal);
-   padding: 15px;
 }
 
 .input-box i {
@@ -46,6 +45,10 @@ h3{
    top: 50%;
    transform: translateY(-50%);
    font-size: 20px;
+}
+
+.signup-box .input-box input{
+   padding-left: 20px;
 }
 
 .signup-box .btn {

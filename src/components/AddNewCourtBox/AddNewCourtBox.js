@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./AddNewCourtBox.css";
+import { useNavigate } from "react-router-dom";
+import { ErrorToast, successToast } from "../../Pulgins/Toast/Toast";
 
 function AddNewCourtBox() {
   const [courtData, setCourtData] = useState({
@@ -12,6 +15,8 @@ function AddNewCourtBox() {
   //console.log("court",courtData.courtName)
   const [selectedImage, setSelectedImage] = useState("");
   const [courtPic, setCourtPic] = useState("");
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setCourtData({ ...courtData, [e.target.name]: e.target.value });
   };
@@ -23,32 +28,39 @@ function AddNewCourtBox() {
   };
   const createCourt = () => {
     let fileData = new FormData();
-    fileData.append('image', courtPic);
-  //  fileData.append('courtName', courtData.courtName);
-  //  fileData.append('location', courtData.location);
-  //  fileData.append('address',courtData.address);
-  //  fileData.append('mobileNumber', courtData.mobileNumber);
-  //  fileData.append('description', courtData.description);
+    fileData.append("image", courtPic);
+    //  fileData.append('courtName', courtData.courtName);
+    //  fileData.append('location', courtData.location);
+    //  fileData.append('address',courtData.address);
+    //  fileData.append('mobileNumber', courtData.mobileNumber);
+    //  fileData.append('description', courtData.description);
     axios
       .post(
         `${process.env.REACT_APP_BE_URL}/admin/createCourt`,
         fileData,
-        {params: courtData},
-        {headers: { "Content-type": "multipart/form-data" } }
-        
+        { params: courtData },
+        { headers: { "Content-Type": "multipart/form-data" } }
+       
+       
       )
       .then((res) => {
-        console.log("hh",res)
-//handle success
+        console.log("hh", res);
+        if (res.status === 200) {
+          successToast("Court Added Successfully");
+          navigate("/home");
+        } else {
+          ErrorToast("Unable to Add Court");
+        }
+
+        //handle success
       })
       .catch((err) => {
-        console.log("s",err);
-        
+        console.log("s", err);
       });
   };
   return (
     <>
-      <div className="p-2 border border-1 rounded-1 d-flex flex-column">
+      <div className="p-2 border border-1 rounded-1 d-flex flex-column ">
         <span className="mt-2">
           <label htmlFor="courtname">Court Name</label>
           <input
@@ -102,9 +114,9 @@ function AddNewCourtBox() {
           <label htmlFor="">Court Image</label>
           <input type="file" onChange={imageChange} />
         </span>
-        { selectedImage && 
+        {selectedImage && (
           <img src={selectedImage} alt="" width={100} height={100} />
-        }
+        )}
       </div>
       <button onClick={createCourt}>Create</button>
     </>

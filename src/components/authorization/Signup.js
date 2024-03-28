@@ -43,17 +43,20 @@ function Signup({toggleBox}) {
   }, [name, email, number, password, confirmPassword]);
 
   const doSignUp = () => {
-    // if (!password === confirmPassword) {
-    //   alert("Password is mismatched");
-    // } else {
-    // }
-
-    axios.post('http://localhost:5000/auth/signup', {name, email, number, password, confirmPassword }).then((res) =>{
-
+    if (password !== confirmPassword) {
+        return alert("Password is mismatched");
+       } else {
+        axios.post('http://localhost:5000/auth/signup', {name, email, number, password, confirmPassword }).then((res) =>{
+         console.log('Sign up successfull',res.data);
+         toggleBox('login')
     })
 .catch((err =>{
   console.log(err);
 }))
+       
+     }
+
+    
   };
 
   return (

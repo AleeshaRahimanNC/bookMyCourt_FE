@@ -22,6 +22,7 @@ setLogCre({...logCre, [e.target.name]:e.target.value})
 const doLogin = () =>{
   console.log(process.env.REACT_APP_BE_URL);
   axios.post(`${process.env.REACT_APP_BE_URL}/auth/login`,logCre).then((res)=>{
+    console.log(res)
     
     if(res.data.message==='Login Successfull'){
       // navigate to home page
@@ -47,7 +48,7 @@ const doLogin = () =>{
     <h3 className="text-center">LogIn</h3>
 
     <div className='input-box'>
-    <input type="email" name="email" value={logCre.email} onChange={handleChange} placeholder="Email"/>
+    <input type="email" name="email" value={logCre.email} onChange={handleChange} placeholder="Email" style={{paddingLeft:'20px'}}/>
     <i class="fa-solid fa-envelope" style={{color:"#FFD43B"}}></i>
     </div>
     
@@ -63,7 +64,7 @@ const doLogin = () =>{
     </div>
     
     <button className="btn mt-3" onClick={doLogin}>
-      Signup
+      Login
     </button>
 
     <div className='register_link'>
