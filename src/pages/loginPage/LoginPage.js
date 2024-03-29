@@ -5,7 +5,7 @@ import Login from "../../components/authorization/Login";
 
 
 function LoginPage() {
-  const [boxtype,setBoxType]=useState('signup')
+  const [boxtype,setBoxType]=useState('login')
   return (
     <div className="login_container d-flex justify-content-center align-items-center">
             {boxtype==='signup' && <Signup toggleBox={setBoxType}/>}
