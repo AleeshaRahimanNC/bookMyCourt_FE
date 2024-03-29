@@ -4,7 +4,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../toolkit/userSlice";
-import { successToast } from "../../Pulgins/Toast/Toast";
+import { ErrorToast, successToast } from "../../Pulgins/Toast/Toast";
+import { showorhideLoader } from "../../toolkit/generalSlice";
+
 
 function Login({ toggleBox }) {
   const [logCre, setLogCre] = useState({ email: "", password: "" });
@@ -20,6 +22,7 @@ function Login({ toggleBox }) {
 
   const doLogin = () => {
     console.log(process.env.REACT_APP_BE_URL);
+    dispatch(showorhideLoader(true))
     axios
       .post(`${process.env.REACT_APP_BE_URL}/auth/login`, logCre)
       .then((res) => {
@@ -27,17 +30,20 @@ function Login({ toggleBox }) {
 
         if (res.status === 200) {
           // navigate to home page
-          successToast("Login Successfull");
+          
           localStorage.setItem("token", res.data.token);
           dispatch(setUser(res.data.userDetails));
           navigate("/home");
+          dispatch(showorhideLoader(false))
+          successToast("Login Successfull");
         }
       })
       .catch((res) => {
         if (res.response.data.message === "Invalid Credentials") {
           alert(res.response.data.message);
         } else {
-          alert("Something went wrong");
+          dispatch(showorhideLoader(false))
+          ErrorToast("Something went wrong");
         }
       });
   };
