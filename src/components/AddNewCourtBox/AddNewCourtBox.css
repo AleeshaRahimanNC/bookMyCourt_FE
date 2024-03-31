@@ -1,0 +1,59 @@
+.courtBox .courtbtn {
+  background-color: var(--brand-yellow);
+  color: black;
+  margin: 20px;
+  border: none;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 13px;
+  padding-right: 13px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.courtBox .courtbtn:hover{
+  background-color: var(--brand-teal);
+}
+
+h3 {
+    text-align: left;
+    font-family: serif;
+    
+}
+.court-input{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.court-input input{
+  border-radius: 10px;
+  width: 60%;
+  padding: 10px;
+  border: 2px solid black;
+ 
+}
+.court-input input:focus{
+border-color: bisque;
+}
+
+.court-input textarea{
+  border-radius: 10px;
+  border: 2px solid black;
+  width: 60%;
+
+
+}
+.court-input textarea:focus{
+border-color: aquamarine;
+}
+
+.image__style{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+

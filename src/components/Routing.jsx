@@ -9,7 +9,10 @@ function Routing() {
   return (
     <Routes>
         <Route path='/' element={<LoginPage/>}/>
+        
         <Route path='/home' element={<Home/>}/>
+
+
         <Route path='/addNewCourt' element={<AddNewCourt/>}/>
         <Route path='/courtDetails/:id' element={<CourtDetails/>}/>
     </Routes>

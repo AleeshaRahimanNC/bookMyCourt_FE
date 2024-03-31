@@ -56,11 +56,11 @@ const {user} = useSelector((store)=>store.user)
               </MDBNavbarLink>
             </MDBNavbarItem>
 
-            <MDBNavbarItem className='navbar-pack'>
+            {user.role===1 && <MDBNavbarItem className='navbar-pack'>
               <MDBNavbarLink className='navbar-pack2' active aria-current='page' href='/addNewCourt'>
                 AddNewCourt
               </MDBNavbarLink>
-            </MDBNavbarItem>
+            </MDBNavbarItem>}
             
             <MDBNavbarItem className='navbar-pack'>
               <MDBNavbarLink className='navbar-pack2' active aria-current='page' href='/mybookings'>
@@ -68,7 +68,9 @@ const {user} = useSelector((store)=>store.user)
               </MDBNavbarLink>
             </MDBNavbarItem>
 
-            <MDBNavbarItem className='navbar-pack'>
+{/* Dropdown code */}
+
+            {/* <MDBNavbarItem className='navbar-pack'>
               <MDBDropdown>
                 <MDBDropdownToggle tag='a' className='nav-link navbar-pack2' role='button'>
                   Dropdown
@@ -79,7 +81,8 @@ const {user} = useSelector((store)=>store.user)
                   <MDBDropdownItem link>Something else here</MDBDropdownItem>
                 </MDBDropdownMenu>
               </MDBDropdown>
-            </MDBNavbarItem>
+            </MDBNavbarItem> */}
+
         </MDBNavbarNav>
 
           <form className='d-flex input-group w-auto input-query'>
@@ -92,8 +95,8 @@ const {user} = useSelector((store)=>store.user)
      {user.name}           
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
-                  <MDBDropdownItem link>Action</MDBDropdownItem>
-                  <MDBDropdownItem link>Another action</MDBDropdownItem>
+                  <MDBDropdownItem link>Profile</MDBDropdownItem>
+                  {/* <MDBDropdownItem link>Another action</MDBDropdownItem> */}
                   <MDBDropdownItem link onClick={doLogout}>Logout</MDBDropdownItem>
                 </MDBDropdownMenu>
               </MDBDropdown>
