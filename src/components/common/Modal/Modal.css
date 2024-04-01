@@ -42,10 +42,12 @@
 .modal-dialog {
   max-width: 810px;
   width: 100%;
+  /* z-index:5; */
 }
 
 .modal-heading .btn-close {
   background-color: var(--brand-yellow);
+  z-index:5;
 }
 
 /* Add hover effect to buttons */

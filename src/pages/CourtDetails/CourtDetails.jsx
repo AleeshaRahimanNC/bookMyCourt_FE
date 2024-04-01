@@ -10,19 +10,23 @@ import filesIcon from "@assets/filesimg.svg";
 import addIcon from "@assets/addicon.svg";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { successToast } from "../../Pulgins/Toast/Toast";
+import { ErrorToast, successToast } from "../../Pulgins/Toast/Toast";
+import { useDispatch } from "react-redux";
+import { showorhideLoader } from "../../toolkit/generalSlice";
 
 
 function CourtDetails() {
   const { id } = useParams(); //get the id present in the router
   const [open, setOpen] = useState(false);
   const [slotdata, setSlotData] = useState({});
+  const dispatch=useDispatch()
   useEffect(() => {
     getCourtDatabyId();
   }, []);
   const [court, setCourt] = useState({}); //we can only write the hook outside of another hook,if loop,aboue return
   const [selected, setSelected] = useState([]);
   const [filteredSlots, setFilteredSlots] = useState(TIMINGS);
+
   const getCourtDatabyId = () => {
     axiosInstance
       .get("/users/getCourtDatabyId", { params: { id } })
@@ -55,6 +59,7 @@ function CourtDetails() {
   };
 
   const createslotsdata = () => {
+    dispatch(showorhideLoader(true))
     axiosInstance
       .post("/admin/addtimeslotsData", {
         ...slotdata,
@@ -64,10 +69,14 @@ function CourtDetails() {
       .then((res) => {
         setOpen(false);
         // alert(res.data);
+        dispatch(showorhideLoader(false))
         successToast("Slot Created Successfully");
+        
       })
       .catch((err) => {
         console.log(err);
+        dispatch(showorhideLoader(false))
+        ErrorToast("Slot Creation Failed");
       });
   };
 
@@ -110,8 +119,9 @@ function CourtDetails() {
         <ReactQuill
           readOnly={true}
           theme="bubble"
-          className=""
-          value={"trdfghytreasdyfgh"}
+          className="quill"
+          // style={{fontSize:'1000px'}}
+          value={court.description}
         />
 
         {open && (

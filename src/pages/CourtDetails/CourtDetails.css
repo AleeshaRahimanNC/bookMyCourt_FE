@@ -52,3 +52,10 @@ height: calc(100vh - 43px);
 .court-headings h4{
     font-family:'Courier New', Courier, monospace;
 }
+
+.quill{
+    padding: 20px;
+    margin: 10px;
+   /* text-size-adjust: 20px; */
+}
+
