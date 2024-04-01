@@ -13,7 +13,7 @@ export default function CourtCards({ court }) {
   const navigate = useNavigate();
 
   const openCourtDetails = () => {
-    navigate(`/courtDetails/${court._id}`);  // called as params 
+    navigate(`/courts/courtDetails/${court._id}`);  // called as params 
   };
 
   return (
@@ -27,10 +27,10 @@ export default function CourtCards({ court }) {
         position="top"
         alt="..."
       />
-      <MDBCardBody>
-        <MDBCardTitle>{court.courtName}</MDBCardTitle>
-        <MDBCardTitle>{court.location}</MDBCardTitle>
-        <MDBCardText></MDBCardText>
+      <MDBCardBody className="card-body">
+        <MDBCardTitle className="court-name"><strong><em>{court.courtName}</em></strong></MDBCardTitle>
+        <MDBCardTitle className="court-location">{court.location}</MDBCardTitle>
+        <MDBCardText className="court-para">Lets play the game!</MDBCardText>
       </MDBCardBody>
     </MDBCard>
   );

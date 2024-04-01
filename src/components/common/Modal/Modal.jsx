@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+
+
+import './Modal.css'
 import {
     MDBBtn,
     MDBModal,
@@ -17,23 +20,24 @@ export default function Modal({ open, setOpen, children, buttonName, heading, ha
 
     return (
         <>
-            <MDBBtn onClick={toggleOpen}>Vertically centered modal</MDBBtn>
+        
+            {/* <MDBBtn onClick={toggleOpen}>Vertically centered modal</MDBBtn> */}
 
-            <MDBModal tabIndex='-1' open={open} setOpen={setOpen}>
-                <MDBModalDialog centered>
-                    <MDBModalContent>
-                        <MDBModalHeader>
+            <MDBModal  tabIndex='-1' open={open} setOpen={setOpen}>
+                <MDBModalDialog centered >
+                    <MDBModalContent className='modal-content border border-1'>
+                        <MDBModalHeader className='modal-heading w-100'>
                             <MDBModalTitle>{heading}</MDBModalTitle>
-                            <MDBBtn className='btn-close' color='none' onClick={toggleOpen}></MDBBtn>
+                            <MDBBtn className='btn-close' onClick={toggleOpen}></MDBBtn>
                         </MDBModalHeader>
-                        <MDBModalBody>
+                        <MDBModalBody className='modal-child'>
                             {children}
                         </MDBModalBody>
-                        <MDBModalFooter>
-                            <button className='btn border btn-dark rounded-1 p-1' color='secondary' onClick={toggleOpen}>
+                        <MDBModalFooter className='modal-footer'>
+                        <button className='modal-btn btn rounded-3'  onClick={toggleOpen}>
                                 Close
                             </button>
-                            <button className='btn border btn-primary rounded-1 p-1' onClick={handleSubmit}>{buttonName}</button>
+                            <button className='modal-btn btn rounded-3' onClick={handleSubmit}>{buttonName}</button>
                         </MDBModalFooter>
                     </MDBModalContent>
                 </MDBModalDialog>

@@ -63,8 +63,8 @@ const {user} = useSelector((store)=>store.user)
             </MDBNavbarItem>}
             
             <MDBNavbarItem className='navbar-pack'>
-              <MDBNavbarLink className='navbar-pack2' active aria-current='page' href='/mybookings'>
-                My Bookings
+              <MDBNavbarLink className='navbar-pack2' active aria-current='page' href='/courts/courtlist'>
+                Courts
               </MDBNavbarLink>
             </MDBNavbarItem>
 

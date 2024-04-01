@@ -2,6 +2,8 @@
   margin: 30px;
   padding: 20px;
   text-transform: capitalize;
+  overflow: hidden;
+  /* position :relative; */
 }
 
 .court-container:hover {
@@ -11,4 +13,27 @@
 
 .court-img {
   height: 200px;
+  cursor: pointer;
+}
+
+.court-container .card-body{
+  /* position: absolute; */
+  cursor: pointer;
+  /* inset: auto auto 30px 30px; */
+  transition: opacity 0.3s ease-out;
+  
+}
+
+.court-container .card-body .court-name{
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  
+}
+
+.court-container .card-body .court-location{
+font-family:'Courier New', Courier, monospace;
+}
+
+.court-container .card-body .court-para{
+font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
 }

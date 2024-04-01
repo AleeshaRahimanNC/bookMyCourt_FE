@@ -52,7 +52,7 @@ function AddNewCourtBox() {
         console.log("hh", res);
         if (res.status === 200) {
           successToast("Court Added Successfully");
-          navigate("/home");
+          navigate("/courts/courtlist");
         } else {
           ErrorToast("Unable to Add Court");
         }

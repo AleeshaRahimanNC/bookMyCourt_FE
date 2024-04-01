@@ -5,6 +5,10 @@
     color: var(--brand-yellow);
 }
 
+.navbar-brand:hover{
+    color: rgb(251, 193, 84);
+}
+
 .navbar{
     background-color: var(--brand-black);
     color: white;
