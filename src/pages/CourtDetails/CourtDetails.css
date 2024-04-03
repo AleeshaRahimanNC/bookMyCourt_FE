@@ -56,6 +56,23 @@ height: calc(100vh - 43px);
 .quill{
     padding: 20px;
     margin: 10px;
-   /* text-size-adjust: 20px; */
+    font-size: 20px;
+    font-family:'Times New Roman', Times, serif;
+}
+
+.availableslots{
+    border: 1px solid var(--brand-teal);
+    border-radius: 5px ;
+    color: var(--brand-black-2);
+    background-color: rgb(129, 202, 129, .7);
+    cursor: pointer;
+}
+
+.notavailable{
+    border: 1px solid rgb(184, 184, 184);
+    border-radius: 5px ;
+    color: rgb(184, 184, 184);
+    background-color: rgb(184, 184, 184, .2);
+    cursor: not-allowed;
 }
 

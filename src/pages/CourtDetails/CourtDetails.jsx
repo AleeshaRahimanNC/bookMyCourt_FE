@@ -8,24 +8,50 @@ import { TIMINGS } from "../../constants";
 import editIcon from "@assets/test.svg";
 import filesIcon from "@assets/filesimg.svg";
 import addIcon from "@assets/addicon.svg";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { ErrorToast, successToast } from "../../Pulgins/Toast/Toast";
 import { useDispatch } from "react-redux";
 import { showorhideLoader } from "../../toolkit/generalSlice";
 
-
 function CourtDetails() {
   const { id } = useParams(); //get the id present in the router
   const [open, setOpen] = useState(false);
   const [slotdata, setSlotData] = useState({});
-  const dispatch=useDispatch()
-  useEffect(() => {
-    getCourtDatabyId();
-  }, []);
   const [court, setCourt] = useState({}); //we can only write the hook outside of another hook,if loop,aboue return
   const [selected, setSelected] = useState([]);
   const [filteredSlots, setFilteredSlots] = useState(TIMINGS);
+  const [bookingModal, setBookingModal] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(
+    new Date().toISOString().substr(0, 10) //yy-mm-dd
+  );
+  const [slots, setSlots] = useState([]);
+  const [bookedSlots, setBookedSlots] = useState([]);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getCourtDatabyId();
+  }, []);
+
+  useEffect(() => {
+    getslotsdata();
+  }, [selectedDate]);
+
+  const getslotsdata = () => {
+    dispatch(showorhideLoader(true));
+    axiosInstance
+      .get("/users/getslotsdata", {
+        params: { courtId: id, date: selectedDate },
+      })
+      .then((res) => {
+        setSlots(res.data);
+        dispatch(showorhideLoader(false));
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch(showorhideLoader(false));
+        ErrorToast("Something went wrong");
+      });
+  };
 
   const getCourtDatabyId = () => {
     axiosInstance
@@ -59,7 +85,7 @@ function CourtDetails() {
   };
 
   const createslotsdata = () => {
-    dispatch(showorhideLoader(true))
+    dispatch(showorhideLoader(true));
     axiosInstance
       .post("/admin/addtimeslotsData", {
         ...slotdata,
@@ -69,16 +95,27 @@ function CourtDetails() {
       .then((res) => {
         setOpen(false);
         // alert(res.data);
-        dispatch(showorhideLoader(false))
+        dispatch(showorhideLoader(false));
         successToast("Slot Created Successfully");
-        
       })
       .catch((err) => {
         console.log(err);
-        dispatch(showorhideLoader(false))
+        dispatch(showorhideLoader(false));
         ErrorToast("Slot Creation Failed");
       });
   };
+
+  // Booking Modal
+  const setorDeselectslot = (slot) => {
+    if (bookedSlots.find((ele) => ele._id === slot._id)) {
+      const temp = bookedSlots.filter((ele) => ele._id !== slot._id);
+      setBookedSlots(temp);
+    } else {
+      setBookedSlots([...bookedSlots, slot]);
+    }
+  };
+
+  const initiateBooking = () => {};
 
   return (
     <>
@@ -97,7 +134,13 @@ function CourtDetails() {
             </div>
 
             <div className=" align-self-end d-flex gap-3 px-3">
-              <button className="boxbtn" onClick={openModal}>
+              <button
+                className="boxbtn"
+                onClick={() => {
+                  console.log("Button clicked");
+                  setBookingModal(true);
+                }}
+              >
                 Book
               </button>
 
@@ -110,19 +153,20 @@ function CourtDetails() {
               </button>
 
               <button className="boxbtn">
-                <img src={addIcon} alt="" />
+                <img src={addIcon} alt="" onClick={openModal} />
               </button>
             </div>
           </div>
         </div>
 
-        <ReactQuill
+        {/* <ReactQuill
           readOnly={true}
           theme="bubble"
-          className="quill"
+         
           // style={{fontSize:'1000px'}}
-          value={court.description}
-        />
+          value={}
+        /> */}
+        <p className="quill">{court.description}</p>
 
         {open && (
           <Modal
@@ -193,6 +237,47 @@ function CourtDetails() {
                     ))}
                   </div>
                 </div>
+              </div>
+            </div>
+          </Modal>
+        )}
+
+        {bookingModal && (
+          <Modal
+            open={bookingModal}
+            setOpen={setBookingModal}
+            buttonName={"Book"}
+            heading={"Booking Slots"}
+            handleSubmit={initiateBooking}
+          >
+            <div className="container-fluid p-3 h-100 d-flex flex-column">
+              <label htmlFor="" className="mt-1">
+                Start Date:
+              </label>
+              <input
+                type="date"
+                className="p-1 px-2 mx-2 border rounded-1"
+                value={selectedDate}
+                min={new Date().toISOString().substr(0, 10)}
+                onChange={(e) => setSelectedDate(e.target.value)}
+              />
+              <label htmlFor="">Available Slots</label>
+              <div className="d-flex flex-wrap gap-2 mt-1">
+                {/* notavailable */}
+                {slots.map((slot) => (
+                  <span
+                    className={`${
+                      bookedSlots.find((ele) => ele._id === slot._id)
+                        ? "bg-info-subtle "
+                        : slot.slot.bookedBy
+                        ? "notavailable"
+                        : "availableslots"
+                    } px-2 py-1 mt-2`}
+                    onClick={() => setorDeselectslot(slot)}
+                  >
+                    {slot.slot.name}
+                  </span>
+                ))}
               </div>
             </div>
           </Modal>
