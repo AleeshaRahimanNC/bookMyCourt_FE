@@ -1,0 +1,15 @@
+.footer-box{
+    background-color: var(--brand-black);
+    color: var(--brand-teal);
+}
+
+
+.footer-link{
+    color: var(--brand-yellow);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.footer-link:hover{
+    color: rgb(251, 193, 84);
+}

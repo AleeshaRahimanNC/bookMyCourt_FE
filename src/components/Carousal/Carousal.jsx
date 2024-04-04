@@ -4,7 +4,7 @@ import IMG1 from '@assets/Carousal1.jpeg'
 import IMG2 from '@assets/Carousal2.jpeg'
 import IMG3 from '@assets/Carousal3.jpg'
 
-function Carousal() {
+function Carousal({courtimage1}) {
   return (
     <div id="carouselExampleCaptions" className="carousel slide carousal-container">
   <div className="carousel-indicators">
@@ -14,7 +14,7 @@ function Carousal() {
   </div>
   <div className="carousel-inner">
     <div className="carousel-item active">
-      <img src={IMG1} className="d-block w-100" alt="..."/>
+      <img src={courtimage1?courtimage1:IMG1} className="d-block w-100" alt="..."/>
       <div className="carousel-caption d-none d-md-block">
         <h5>Unleash Your Inner Champion!</h5>
         <p>In football, everything is possible, from the moment you work and you believe in your qualities.</p>

@@ -4,6 +4,9 @@ import "./AddNewCourtBox.css";
 import { useNavigate } from "react-router-dom";
 import { ErrorToast, successToast } from "../../Pulgins/Toast/Toast";
 import addIcon from "@assets/add_icon.svg";
+import Footer from "../Footer/Footer";
+import Carousal from "../Carousal/Carousal";
+import image3 from '@assets/Turf3.jpeg'
 
 function AddNewCourtBox() {
   const [courtData, setCourtData] = useState({
@@ -66,8 +69,9 @@ function AddNewCourtBox() {
   };
   return (
     <>
+    <Carousal courtimage1={image3} />
       <div className="container-fluid">
-        <h3 className="mt-3">
+        <h3 className="heading-box">
           <strong>
             <em>Add New Court</em>
           </strong>
@@ -150,13 +154,14 @@ function AddNewCourtBox() {
            
           </div>
         </div>
-        <div className="d-flex justify-content-center gap-3 mt-4 courtBox">
+        <div  className="d-flex justify-content-center gap-3 mt-4 courtBox">
           <button className="courtbtn" onClick={createCourt}>
             Create
           </button>
           <button className="courtbtn">Cancel</button>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

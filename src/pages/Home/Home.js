@@ -6,6 +6,8 @@ import MainNavBar from "../../components/NavBar/MainNavBar";
 import Carousal from "../../components/Carousal/Carousal";
 import Blocks from "../../components/Blocks/Blocks";
 import UspBlocks from "../../components/UspBlocks/UspBlocks";
+import Footer from "../../components/Footer/Footer";
+
 
 function Home() {
 //   const[courtData,setCourtData]=useState([])
@@ -37,6 +39,7 @@ function Home() {
       </div>
       
        */}
+<Footer/>
     </>
   );
 }

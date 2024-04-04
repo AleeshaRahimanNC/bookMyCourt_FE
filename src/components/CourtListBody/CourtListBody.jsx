@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import CourtCards from "../courtCards/CourtCards";
 import axiosInstance from "../../config/AxiosInstance";
 import { ErrorToast } from "../../Pulgins/Toast/Toast";
+import './CourtListBody.css'
 
 function CourtListBody() {
   const [courtData, setCourtData] = useState([]);
@@ -22,6 +23,7 @@ function CourtListBody() {
       });
   };
   return (
+    <>
     <div className="container-fluid">
       <div className="row gap-2 p-2 home__wrapper">
         {courtData.map((court) => (
@@ -29,6 +31,7 @@ function CourtListBody() {
         ))}
       </div>
     </div>
+    </>
   );
 }
 

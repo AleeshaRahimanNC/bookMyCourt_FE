@@ -6,8 +6,11 @@ import AddNewCourt from "../pages/NewCourt/AddNewCourt";
 import CourtDetails from "../pages/CourtDetails/CourtDetails";
 import CourtListPage from "../pages/CourtListPage/CourtListPage";
 
+
 function Routing() {
   return (
+    <>
+  
     <Routes>
       <Route path="/" element={<LoginPage />} />
 
@@ -19,7 +22,11 @@ function Routing() {
       </Route>
       
       <Route path="/addNewCourt" element={<AddNewCourt />} />
+      
     </Routes>
+    
+    </>
+   
   );
 }
 
