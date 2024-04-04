@@ -6,7 +6,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(function (config) {
   const token = localStorage.getItem("token");
-  config.headers["Authorization"] = "Bearer " + token;
+  config.headers['Authorization'] = 'Bearer' + " "+ token;
   return config;
 });
 
@@ -18,7 +18,7 @@ axiosInstance.interceptors.response.use(
     if (error.response && error.response.status === 401) {
       window.location.href = "/";
       localStorage.clear();
-      console.log('Unauthorized User');
+      console.log('unauthorized user');
     }
     return Promise.reject(error)
   }

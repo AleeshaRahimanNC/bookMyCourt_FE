@@ -18,7 +18,7 @@ import {
   MDBCollapse,
 } from 'mdb-react-ui-kit';
 //import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 
@@ -33,6 +33,7 @@ export default function MainNavBar() {
   }
 
 const {user} = useSelector((store)=>store.user)
+const getRole=localStorage.getItem("role")
 
   return (
     <MDBNavbar className='navbar navbar-expand-lg shadow py-3 sticky-top'>
@@ -51,21 +52,30 @@ const {user} = useSelector((store)=>store.user)
         <MDBCollapse navbar open={openBasic}>
           <MDBNavbarNav className='mr-auto mb-2 mb-lg-0 navbar-pack1'>
             <MDBNavbarItem className='navbar-pack'>
-              <MDBNavbarLink className='navbar-pack2' active aria-current='page' href='/home'>
+              {/* <MDBNavbarLink className='navbar-pack2' active aria-current='page' href='/home'>
                 Home
-              </MDBNavbarLink>
+              </MDBNavbarLink> */}
+               <Link className='navbar-pack2 p-3' active aria-current='page' to={"/home"}>
+                Home
+              </Link>
             </MDBNavbarItem>
-
-            {user.role===1 && <MDBNavbarItem className='navbar-pack'>
-              <MDBNavbarLink className='navbar-pack2' active aria-current='page' href='/addNewCourt'>
+            {/* user.role===1 */}
+            {getRole=== '1' && <MDBNavbarItem className='navbar-pack'>
+              {/* <MDBNavbarLink className='navbar-pack2' active aria-current='page' href='/addNewCourt'>
                 AddNewCourt
-              </MDBNavbarLink>
+              </MDBNavbarLink> */}
+              <Link className='navbar-pack2 p-3' active aria-current='page' to={'/addNewCourt'}>
+                AddNewCourt
+              </Link>
             </MDBNavbarItem>}
             
             <MDBNavbarItem className='navbar-pack'>
-              <MDBNavbarLink className='navbar-pack2' active aria-current='page' href='/courts/courtlist'>
+              {/* <MDBNavbarLink className='navbar-pack2' active aria-current='page' href='/courts/courtlist'>
                 Courts
-              </MDBNavbarLink>
+              </MDBNavbarLink> */}
+              <Link className='navbar-pack2 p-3' active aria-current='page' to={'/courts/courtlist'}>
+                Courts
+              </Link>
             </MDBNavbarItem>
 
 {/* Dropdown code */}

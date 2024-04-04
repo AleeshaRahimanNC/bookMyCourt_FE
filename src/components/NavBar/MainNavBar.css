@@ -16,6 +16,8 @@
 
 .navbar .navbar-pack .navbar-pack2{
     color: var(--brand-teal);
+    text-decoration: none;
+    margin-top: 10px;
 }
 
 .navbar__button-style{

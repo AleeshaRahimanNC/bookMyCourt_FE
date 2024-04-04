@@ -30,8 +30,9 @@ function Login({ toggleBox }) {
 
         if (res.status === 200) {
           // navigate to home page
-          
+  
           localStorage.setItem("token", res.data.token);
+          localStorage.setItem("role", res.data.userDetails.role);
           dispatch(setUser(res.data.userDetails));
           navigate("/home");
           dispatch(showorhideLoader(false))
@@ -40,6 +41,7 @@ function Login({ toggleBox }) {
       })
       .catch((res) => {
         if (res.response.data.message === "Invalid Credentials") {
+          dispatch(showorhideLoader(false))
           alert(res.response.data.message);
         } else {
           dispatch(showorhideLoader(false))
