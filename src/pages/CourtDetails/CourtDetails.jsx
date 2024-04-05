@@ -12,6 +12,7 @@ import "react-quill/dist/quill.snow.css";
 import { ErrorToast, successToast } from "../../Pulgins/Toast/Toast";
 import { useDispatch } from "react-redux";
 import { showorhideLoader } from "../../toolkit/generalSlice";
+import Footer from "../../components/Footer/Footer";
 
 function CourtDetails() {
   const { id } = useParams(); //get the id present in the router
@@ -364,7 +365,10 @@ function CourtDetails() {
             </div>
           </Modal>
         )}
+         <Footer/>
       </div>
+
+     
     </>
   );
 }
