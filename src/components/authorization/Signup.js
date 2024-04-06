@@ -54,8 +54,10 @@ function Signup({ toggleBox }) {
     if (password !== confirmPassword) {
       return ErrorToast("Password is mismatched");
     } else {
+      // "http://localhost:5000/auth/signup"
       axios
-        .post("http://localhost:5000/auth/signup", {
+     
+        .post(`${process.env.REACT_APP_BE_URL}/auth/signup`, {
           name,
           email,
           number,

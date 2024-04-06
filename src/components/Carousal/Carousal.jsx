@@ -3,6 +3,7 @@ import './Carousal.css'
 import IMG1 from '@assets/Carousal1.jpeg'
 import IMG2 from '@assets/Carousal2.jpeg'
 import IMG3 from '@assets/Carousal3.jpg'
+import IMG4 from '@assets/Carousal4.jpg'
 
 function Carousal({courtimage1}) {
   return (
@@ -14,14 +15,15 @@ function Carousal({courtimage1}) {
   </div>
   <div className="carousel-inner">
     <div className="carousel-item active">
-      <img src={courtimage1?courtimage1:IMG1} className="d-block w-100" alt="..."/>
+         <img src={courtimage1?courtimage1:IMG1} className="d-block w-100" alt="..."/>
+      {/* <img src={IMG1} className="d-block w-100" alt="..."/> */}
       <div className="carousel-caption d-none d-md-block">
         <h5>Unleash Your Inner Champion!</h5>
         <p>In football, everything is possible, from the moment you work and you believe in your qualities.</p>
       </div>
     </div>
     <div className="carousel-item">
-      <img src={IMG2} className="d-block w-100" alt="..."/>
+      <img src={IMG4} className="d-block w-100" alt="..."/>
       <div className="carousel-caption d-none d-md-block">
         <h5>Elevate Your Skills, Elevate Your Game!</h5>
         <p>Discover joy in every jump, laughter in every swing.</p>

@@ -14,3 +14,10 @@
     height: 70px;
     margin: auto;
 }
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    .carousal-container img {
+        max-height: 35vh;/* Reduce max-height for smaller screens */
+    }
+}

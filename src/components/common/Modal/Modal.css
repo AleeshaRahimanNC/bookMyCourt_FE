@@ -54,3 +54,10 @@
 .modal-btn:hover {
   background-color: rgb(249, 186, 29);
 }
+
+@media only screen and (max-width: 500px) {
+  .modal-dialog {
+ 
+    width: 95%;
+  }
+}

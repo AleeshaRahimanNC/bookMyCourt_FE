@@ -23,16 +23,19 @@ function Login({ toggleBox }) {
   const doLogin = () => {
     console.log(process.env.REACT_APP_BE_URL);
     dispatch(showorhideLoader(true))
-    axios
+    axios  
+    
       .post(`${process.env.REACT_APP_BE_URL}/auth/login`, logCre)
+      // .post('https://bookmycourt-be-5epq.onrender.com/auth/login', logCre)
       .then((res) => {
-        console.log(res);
+        console.log(res.data.userDetails);
 
         if (res.status === 200) {
           // navigate to home page
   
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("role", res.data.userDetails.role);
+          localStorage.setItem("user", JSON.stringify(res.data.userDetails.name));
           dispatch(setUser(res.data.userDetails));
           navigate("/home");
           dispatch(showorhideLoader(false))

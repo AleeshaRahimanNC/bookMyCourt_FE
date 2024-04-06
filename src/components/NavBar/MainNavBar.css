@@ -13,6 +13,9 @@
     background-color: var(--brand-black);
     color: white;
 }
+.input-query{
+    width: 40%;
+}
 
 .navbar .navbar-pack .navbar-pack2{
     color: var(--brand-teal);
@@ -34,8 +37,55 @@
 .navbar .input-query .form-control::placeholder{
     color: var(--brand-teal);
 }
-
 .toggle-icon{
     color: var(--brand-yellow);
     
 }
+.user_style{
+    color:  var(--brand-teal);
+}
+.user_style:hover{
+    color: rgb(251, 193, 84);
+}
+
+.dropdown_style{
+    background-color: var(--brand-grey);  
+}
+.dropdown-menu.show {
+    margin-top: 20px;
+}
+
+/* .dropdown_style1{
+    color: red !important;
+} */
+
+.dropdown-item:focus, .dropdown-item:hover {
+    background-color:  var(--brand-black);
+    color:  var(--brand-teal);
+}
+
+@media only screen and (max-width: 500px) {
+    .navbar-pack{
+        margin-top: 10px;
+    }
+    .input__style{
+        margin-top: 10px;
+    }
+    .navbar__button-style {
+     width:50%;
+        margin: 15px;
+      
+    }
+    .input-query{
+        width: 68%;
+        margin-left: 14px;
+    }
+    .dropdown{
+    margin-left: 9px;
+       
+     }
+     .dropdown-item:focus, .dropdown-item:hover {
+        background-color:  var(--brand-black);
+        color:  var(--brand-teal);
+    }
+  }

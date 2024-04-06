@@ -13,6 +13,8 @@ import { ErrorToast, successToast } from "../../Pulgins/Toast/Toast";
 import { useDispatch } from "react-redux";
 import { showorhideLoader } from "../../toolkit/generalSlice";
 import Footer from "../../components/Footer/Footer";
+import "react-tooltip/dist/react-tooltip.css";
+import { Tooltip } from "react-tooltip";
 
 function CourtDetails() {
   const { id } = useParams(); //get the id present in the router
@@ -123,7 +125,6 @@ function CourtDetails() {
     );
 
     if (!res) {
-      
       ErrorToast("Razorpay SDK failed to load. Are you online?");
       return;
     }
@@ -143,7 +144,7 @@ function CourtDetails() {
 
     // Getting the order details back
     const { amount, id: order_id, currency, receipt } = result.data;
-    dispatch(showorhideLoader(false))
+    dispatch(showorhideLoader(false));
     const options = {
       key: process.env.REACT_APP_RP_KEY_ID,
       amount: amount.toString(),
@@ -165,9 +166,9 @@ function CourtDetails() {
         };
 
         const result = await axiosInstance.post("/payments/verify", data);
-          setBookingModal(false)
-          getslotsdata()
-          successToast(result.data.msg);
+        setBookingModal(false);
+        getslotsdata();
+        successToast(result.data.msg);
       },
       prefill: {
         name: "Soumya Dey",
@@ -211,14 +212,17 @@ function CourtDetails() {
           />
 
           <div className="detail-image-content d-flex justify-content-between p-4">
-            <div className="d-flex flex-column justify-content-center text-white">
+            <div className="d-flex flex-column justify-content-center text-white details__wrapper">
               <h3>{court.courtName}</h3>
               <p>{court.location}</p>
             </div>
-
-            <div className=" align-self-end d-flex gap-3 px-3">
+            <Tooltip anchorSelect=".my-anchor-element" place="top">
+              Book Slot
+            </Tooltip>
+            <div className="button_wrapper">
               <button
-                className="boxbtn"
+                className="boxbtn my-anchor-element"
+          
                 onClick={() => {
                   console.log("Button clicked");
                   setBookingModal(true);
@@ -226,8 +230,8 @@ function CourtDetails() {
               >
                 Book
               </button>
-
-              <button className="boxbtn">
+             
+              <button className="boxbtn ">
                 <img src={editIcon} alt="" />
               </button>
 
@@ -235,7 +239,10 @@ function CourtDetails() {
                 <img src={filesIcon} alt="" />
               </button>
 
-              <button className="boxbtn">
+              <Tooltip anchorSelect=".my-anchor-slot " place="top">
+                Add Slot
+              </Tooltip>
+              <button className="boxbtn my-anchor-slot" >
                 <img src={addIcon} alt="" onClick={openModal} />
               </button>
             </div>
@@ -249,7 +256,9 @@ function CourtDetails() {
           // style={{fontSize:'1000px'}}
           value={}
         /> */}
-        <p className="quill">{court.description}</p>
+        <div className="quill">
+          <p className="para__style">{court.description}</p>
+        </div>
 
         {open && (
           <Modal
@@ -365,10 +374,8 @@ function CourtDetails() {
             </div>
           </Modal>
         )}
-         <Footer/>
+        <Footer />
       </div>
-
-     
     </>
   );
 }

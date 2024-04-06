@@ -5,6 +5,7 @@ import Home from "../pages/Home/Home";
 import AddNewCourt from "../pages/NewCourt/AddNewCourt";
 import CourtDetails from "../pages/CourtDetails/CourtDetails";
 import CourtListPage from "../pages/CourtListPage/CourtListPage";
+import Protected from "./ProtectedRoute/ProtectedRoute";
 
 
 function Routing() {
@@ -14,14 +15,14 @@ function Routing() {
     <Routes>
       <Route path="/" element={<LoginPage />} />
 
-      <Route path="/home" element={<Home />} />
+      <Route path="/home" element={<Protected><Home /></Protected>} />
 
       <Route path="/courts">
-        <Route path="courtlist" element={<CourtListPage />} />
-        <Route path="courtDetails/:id" element={<CourtDetails />} />
+        <Route path="courtlist" element={<Protected><CourtListPage /></Protected>} />
+        <Route path="courtDetails/:id" element={<Protected><CourtDetails /></Protected>} />
       </Route>
       
-      <Route path="/addNewCourt" element={<AddNewCourt />} />
+      <Route path="/addNewCourt" element={<Protected><AddNewCourt /></Protected>} />
       
     </Routes>
     

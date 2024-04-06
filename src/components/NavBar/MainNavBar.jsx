@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import './MainNavBar.css'
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import "./MainNavBar.css";
 
 import {
   MDBContainer,
@@ -16,69 +16,89 @@ import {
   MDBDropdownMenu,
   MDBDropdownItem,
   MDBCollapse,
-} from 'mdb-react-ui-kit';
+} from "mdb-react-ui-kit";
 //import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function MainNavBar() {
   const [openBasic, setOpenBasic] = useState(false);
-  const navigate=useNavigate()
-  const doLogout=()=>{
+  const navigate = useNavigate();
+  const doLogout = () => {
     //localStorage.remove('token')
     //localStorage.remove('user')
-    localStorage.clear()
-    navigate('/')
-  }
+    localStorage.clear();
+    navigate("/");
+  };
 
-const {user} = useSelector((store)=>store.user)
-const getRole=localStorage.getItem("role")
+  const { user } = useSelector((store) => store.user);
+  const userName=JSON.parse(localStorage.getItem("user"));
+
+  const getRole = localStorage.getItem("role");
 
   return (
-    <MDBNavbar className='navbar navbar-expand-lg shadow py-3 sticky-top'>
+    <MDBNavbar className="navbar navbar-expand-lg shadow py-3 sticky-top">
       <MDBContainer fluid>
-      <MDBNavbarBrand className='navbar-brand'><em>BookMyCourt</em></MDBNavbarBrand> 
+        <MDBNavbarBrand className="navbar-brand">
+          <em>BookMyCourt</em>
+        </MDBNavbarBrand>
 
         <MDBNavbarToggler
-          aria-controls='navbarSupportedContent'
-          aria-expanded='false'
-          aria-label='Toggle navigation'
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
           onClick={() => setOpenBasic(!openBasic)}
         >
-          <MDBIcon className='toggle-icon' icon='bars' fas />
+          <MDBIcon className="toggle-icon" icon="bars" fas />
         </MDBNavbarToggler>
 
         <MDBCollapse navbar open={openBasic}>
-          <MDBNavbarNav className='mr-auto mb-2 mb-lg-0 navbar-pack1'>
-            <MDBNavbarItem className='navbar-pack'>
+          <MDBNavbarNav className="mr-auto mb-2 mb-lg-0 navbar-pack1">
+            <MDBNavbarItem className="navbar-pack">
               {/* <MDBNavbarLink className='navbar-pack2' active aria-current='page' href='/home'>
                 Home
               </MDBNavbarLink> */}
-               <Link className='navbar-pack2 p-3' active aria-current='page' to={"/home"}>
+              <Link
+                className="navbar-pack2 p-3"
+                active
+                aria-current="page"
+                to={"/home"}
+              >
                 Home
               </Link>
             </MDBNavbarItem>
             {/* user.role===1 */}
-            {getRole=== '1' && <MDBNavbarItem className='navbar-pack'>
-              {/* <MDBNavbarLink className='navbar-pack2' active aria-current='page' href='/addNewCourt'>
+            {getRole === "1" && (
+              <MDBNavbarItem className="navbar-pack">
+                {/* <MDBNavbarLink className='navbar-pack2' active aria-current='page' href='/addNewCourt'>
                 AddNewCourt
               </MDBNavbarLink> */}
-              <Link className='navbar-pack2 p-3' active aria-current='page' to={'/addNewCourt'}>
-                AddNewCourt
-              </Link>
-            </MDBNavbarItem>}
-            
-            <MDBNavbarItem className='navbar-pack'>
+                <Link
+                  className="navbar-pack2 p-3"
+                  active
+                  aria-current="page"
+                  to={"/addNewCourt"}
+                >
+                  AddNewCourt
+                </Link>
+              </MDBNavbarItem>
+            )}
+
+            <MDBNavbarItem className="navbar-pack">
               {/* <MDBNavbarLink className='navbar-pack2' active aria-current='page' href='/courts/courtlist'>
                 Courts
               </MDBNavbarLink> */}
-              <Link className='navbar-pack2 p-3' active aria-current='page' to={'/courts/courtlist'}>
+              <Link
+                className="navbar-pack2 p-3"
+                active
+                aria-current="page"
+                to={"/courts/courtlist"}
+              >
                 Courts
               </Link>
             </MDBNavbarItem>
 
-{/* Dropdown code */}
+            {/* Dropdown code */}
 
             {/* <MDBNavbarItem className='navbar-pack'>
               <MDBDropdown>
@@ -92,25 +112,40 @@ const getRole=localStorage.getItem("role")
                 </MDBDropdownMenu>
               </MDBDropdown>
             </MDBNavbarItem> */}
-
-        </MDBNavbarNav>
-
-          <form className='d-flex input-group w-auto input-query'>
-            <input type='search' className='form-control' placeholder='Type query' aria-label='Search' />
+          </MDBNavbarNav>
+{/* w-auto */}
+          <form className="d-flex input-group  input-query">
+            <input
+              type="search"
+              className="form-control input__style"
+              placeholder="Type query"
+              aria-label="Search"
+            />
           </form>
-          <Button className='navbar__button-style mt-4' variant="warning">search</Button>
-        <div className='d-none d-lg-block'> {/*Display on large screen only*/}
-               <MDBDropdown>
-                <MDBDropdownToggle tag='a' className='nav-link ms-2' role='button'>
-     {user.name}           
-                </MDBDropdownToggle>
-                <MDBDropdownMenu>
-                  <MDBDropdownItem link>Profile</MDBDropdownItem>
-                  {/* <MDBDropdownItem link>Another action</MDBDropdownItem> */}
-                  <MDBDropdownItem link onClick={doLogout}>Logout</MDBDropdownItem>
-                </MDBDropdownMenu>
-              </MDBDropdown>
-        </div>
+          <Button className="navbar__button-style mt-4" variant="warning">
+            search
+          </Button>
+          <div className="d-lg-block d-md-block d-sm-block">
+            {" "}
+            {/*Display on large screen only*/}
+            <MDBDropdown>
+              <MDBDropdownToggle
+                tag="a"
+                className="nav-link ms-2 user_style"
+                role="button"
+              >
+                {/* {user.name} */}
+                {userName}
+              </MDBDropdownToggle>
+              <MDBDropdownMenu className="dropdown_style">
+                <MDBDropdownItem link className="dropdown_style1">Profile</MDBDropdownItem>
+                {/* <MDBDropdownItem link>Another action</MDBDropdownItem> */}
+                <MDBDropdownItem link onClick={doLogout} className="dropdown_style1">
+                  Logout
+                </MDBDropdownItem>
+              </MDBDropdownMenu>
+            </MDBDropdown>
+          </div>
         </MDBCollapse>
       </MDBContainer>
     </MDBNavbar>
